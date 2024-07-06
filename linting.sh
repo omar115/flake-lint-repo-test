@@ -9,7 +9,7 @@ get_changed_directories() {
     echo "$directories"
 }
 
-# Function to run flake8 on given directories
+
 run_linting() {
     local directories=$1
     
@@ -26,7 +26,7 @@ run_linting() {
     done
 }
 
-# Main script execution
+
 changed_directories=$(get_changed_directories)
 if [ -n "$changed_directories" ]; then
     run_linting "$changed_directories"
