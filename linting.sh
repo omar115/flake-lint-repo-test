@@ -10,17 +10,17 @@ get_changed_directories() {
 }
 
 # Function to run flake8 on given directories
-run_flake8_on_directories() {
+run_linting() {
     local directories=$1
     
     for dir in $directories; do
         if [ -d "$dir" ]; then
-            echo "Running flake8 on directory: $dir"
+            echo "Last commit directory ==> $dir"
             flake8 $dir
             if [ $? -ne 0 ]; then
-                echo "flake8 found issues in directory: $dir"
+                echo "Linting result given to dir -->  $dir"
             else
-                echo "No issues found in directory: $dir"
+                echo "No issues found, linting passed for dir --> $dir"
             fi
         fi
     done
@@ -29,7 +29,7 @@ run_flake8_on_directories() {
 # Main script execution
 changed_directories=$(get_changed_directories)
 if [ -n "$changed_directories" ]; then
-    run_flake8_on_directories "$changed_directories"
+    run_linting "$changed_directories"
 else
     echo "No directories changed in the last commit."
 fi
